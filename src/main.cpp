@@ -1,12 +1,13 @@
 #include <Arduino.h>
 
-int GREEN = 5;
-int YELLOW = 4;
-int RED = 3;
+const int GREEN = 5;
+const int YELLOW = 4;
+const int RED = 3;
+const int buzzer = 12;
 
 int DELAY_GREEN = 5000;
-int DELAY_YELLOW = 2000;
-int DELAY_RED = 2000;
+int DELAY_YELLOW = 1000;
+int DELAY_RED = 1300;
 
 void yellow_light() {
   digitalWrite(GREEN, LOW);
@@ -18,6 +19,7 @@ void setup() {
  pinMode(RED, OUTPUT);
  pinMode(YELLOW, OUTPUT);
  pinMode(GREEN, OUTPUT);
+ pinMode(buzzer, OUTPUT);
 }
 
 
@@ -43,4 +45,13 @@ void loop() {
  delay(DELAY_RED);
  green_light();
  delay(DELAY_GREEN);
+}
+
+void alarm() {
+ tone(buzzer, 1000);                        
+ digitalWrite(buzzer, HIGH);
+ delay(500);
+ noTone(5);
+ digitalWrite(buzzer, LOW);
+ delay(500);
 }
