@@ -1,3 +1,3 @@
-# main.cpp - Changed color
+# Succesful buzzer
 
-I rearranged the code so the colors came in order. Yellow, red, green
+I managed to make a succesful code for a buzzer. I haven't used the code together with the arduino yet.
