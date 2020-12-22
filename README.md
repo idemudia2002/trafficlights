@@ -3,7 +3,7 @@
 
 This project is about is about traffic lights.
 
-![](./Diods.gif)
+![](./arduino.gif)
 
 # Kit
 **arduino**, **diod**, **breadboard**.
