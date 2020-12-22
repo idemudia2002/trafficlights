@@ -1,57 +1,82 @@
 #include <Arduino.h>
 
-const int GREEN = 5;
-const int YELLOW = 4;
-const int RED = 3;
-const int buzzer = 12;
+const int GREEN1 = 1;
+const int GREEN2 = 2;
+const int RED1 = 3;
+const int RED2 = 4;
+const int RED3 = 5;
+const int buzzer = 8;
+int blinkRate = 300;
 
-int DELAY_GREEN = 5000;
-int DELAY_YELLOW = 1000;
-int DELAY_RED = 1300;
 
-void yellow_light() {
-  digitalWrite(GREEN, LOW);
-  digitalWrite(YELLOW, HIGH);
-  digitalWrite(RED, LOW);
+void greenOn() {
+  digitalWrite(GREEN1, HIGH);
+  digitalWrite(GREEN2, HIGH);
+  
 }
+
+void greenOff() {
+ digitalWrite(GREEN1, LOW);
+  digitalWrite(GREEN2, LOW);
+}
+
+void redOn() {
+  digitalWrite(RED1, HIGH);
+  digitalWrite(RED2, HIGH);
+  digitalWrite(RED3, HIGH);
+}
+
+void redOff() {
+  digitalWrite(RED1, LOW);
+  digitalWrite(RED2, LOW);
+  digitalWrite(RED3, LOW);
+}
+
+
 
 void setup() {
- pinMode(RED, OUTPUT);
- pinMode(YELLOW, OUTPUT);
- pinMode(GREEN, OUTPUT);
- pinMode(buzzer, OUTPUT);
-}
-
-
-void red_light() {
-  digitalWrite(GREEN, LOW);
-  digitalWrite(YELLOW, LOW);
-  digitalWrite(RED, HIGH);
-}
-
-
-
-void green_light() {
-  digitalWrite(GREEN, HIGH);
-  digitalWrite(YELLOW, LOW);
-  digitalWrite(RED, LOW);
+  pinMode(GREEN1, OUTPUT);
+  pinMode(GREEN2, OUTPUT);
+  pinMode(RED1, OUTPUT);
+  pinMode(RED2, OUTPUT);
+  pinMode(RED3, OUTPUT);
+  pinMode(buzzer, OUTPUT);  
 }
 
 
 void loop() {
- yellow_light();
- delay(DELAY_YELLOW);
- red_light();
- delay(DELAY_RED);
- green_light();
- delay(DELAY_GREEN);
+noTone(buzzer);
+greenOff();
+redOff();
+
+delay(5000);
+blinkRate = 300;
+
+
+
+
+for(int i = 0; i <15; i++) {
+  tone(buzzer, 80);
+  redOff();
+  digitalWrite(RED1, HIGH);
+  delay(blinkRate);
+  noTone(buzzer);
+  digitalWrite(RED2, HIGH);
+  delay(blinkRate);
+  redOff();
+  digitalWrite(RED3, HIGH);
+  delay(blinkRate);
 }
 
-void alarm() {
- tone(buzzer, 1000);                        
- digitalWrite(buzzer, HIGH);
- delay(500);
- noTone(5);
- digitalWrite(buzzer, LOW);
- delay(500);
+for(int i = 0; i <15; i++) {
+  redOff();
+  delay(50);
+  redOn();
+  delay(50);
+}
+
+tone(buzzer,80);
+redOff();
+greenOn();
+delay(3000);
 }
